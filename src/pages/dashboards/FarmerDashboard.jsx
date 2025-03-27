@@ -1,50 +1,76 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import EventHostProfileForm from "../../components/ProfileCompletionForm/EventHostProfileForm";
+import NGOProfileForm from "../../components/ProfileCompletionForm/NGOProfileForm";
+import CustomerProfileForm from "../../components/ProfileCompletionForm/CustomerProfileForm";
+import FarmerProfileForm from "../../components/ProfileCompletionForm/FarmerProfileForm";
+import { FaShoppingBasket } from "react-icons/fa";
 
-function FarmerDashboard() {
-  const [products, setProducts] = useState([
-    { id: 1, name: "Organic Strawberries", price: 3.99, image: "/strawberries.jpg" },
-    { id: 2, name: "Organic Blueberries", price: 4.99, image: "/blueberries.jpg" },
-    { id: 3, name: "Organic Raspberries", price: 5.99, image: "/raspberries.jpg" },
-  ]);
-
+const Sidebar = ({ setSelectedOption }) => {
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md p-4">
-        <h2 className="text-lg font-semibold mb-6">Megan Jones</h2>
-        <nav>
-          <ul>
-            <li className="mb-4"><a href="#" className="text-gray-600 hover:text-black">Dashboard</a></li>
-            <li className="mb-4 font-bold text-black">Farmers Market</li>
-            <li className="mb-4"><a href="#" className="text-gray-600 hover:text-black">Events</a></li>
-            <li className="mb-4"><a href="#" className="text-gray-600 hover:text-black">Customers</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-black">Reports</a></li>
-          </ul>
-        </nav>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 p-6">
-        <h1 className="text-2xl font-bold">Farmers Market</h1>
-        <p className="text-blue-500 underline cursor-pointer">Manage your offerings</p>
-
-        {/* Product List */}
-        <div className="mt-6">
-          <h2 className="text-lg font-semibold">Current Offerings</h2>
-          <ul className="mt-4">
-            {products.map((product) => (
-              <li key={product.id} className="flex items-center justify-between p-2 border rounded-md bg-white shadow-sm mb-2">
-                <img src={product.image} alt={product.name} className="w-16 h-16 rounded" />
-                <span className="flex-1 ml-4">{product.name}</span>
-                <span className="text-gray-700 font-medium">${product.price.toFixed(2)}</span>
-              </li>
-            ))}
-          </ul>
-          <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">+ Add Product</button>
-        </div>
-      </main>
+    <div className="w-64 p-5 bg-gray-800 text-white h-full shadow-lg">
+      <h3 className="text-xl font-bold flex items-center gap-2">
+        <FaShoppingBasket /> Farmer's Market
+      </h3>
+      <ul className="mt-6 space-y-3">
+        {["Dashboard", "Farmers", "Events", "NGOs", "Customers"].map((option) => (
+          <li
+            key={option}
+            className="p-3 cursor-pointer rounded-lg text-lg font-medium hover:bg-gray-600 transition-all"
+            onClick={() => setSelectedOption(option)}
+          >
+            {option}
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
+
+const FarmerDashboard = () => {
+  const [selectedOption, setSelectedOption] = useState("Dashboard");
+
+  return (
+    <div className="flex flex-col h-screen">
+      <div className="flex flex-1 bg-gray-100">
+        {/* Sidebar */}
+        <Sidebar setSelectedOption={setSelectedOption} />
+
+        {/* Main Content */}
+        <div className="flex-1 p-6">
+          {selectedOption === "Farmers" && (
+            <div className="flex flex-col">
+              <h1 className="text-3xl font-bold mb-4 text-gray-800">Farmers Market</h1>
+              <FarmerProfileForm />
+            </div>
+          )}
+          {selectedOption === "NGOs" && (
+            <div className="flex flex-col">
+              <h1 className="text-3xl font-bold mb-4 text-gray-800">NGO Profile</h1>
+              <NGOProfileForm />
+            </div>
+          )}
+          {selectedOption === "Events" && (
+            <div className="flex flex-col">
+              <h1 className="text-3xl font-bold mb-4 text-gray-800">Event Host Profile</h1>
+              <EventHostProfileForm />
+            </div>
+          )}
+          {selectedOption === "Customers" && (
+            <div className="flex flex-col">
+              <h1 className="text-3xl font-bold mb-4 text-gray-800">Customer Profile</h1>
+              <CustomerProfileForm />
+            </div>
+          )}
+          {selectedOption === "Dashboard" && (
+            <div>
+              <h1 className="text-3xl font-bold mb-4 text-gray-800">Dashboard</h1>
+              <p className="text-gray-600">Welcome to the Dashboard!</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default FarmerDashboard;

@@ -28,20 +28,152 @@ const FoodDonationForm = ({ onSubmit }) => {
   };
 
   return (
-    <div className="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-center">Complete Your Profile</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input type="text" name="foodTitle" placeholder="Food Title" required className="w-full p-2 border rounded" value={formData.foodTitle} onChange={handleChange} />
-        <textarea name="foodDescription" placeholder="Food Description" required className="w-full p-2 border rounded" value={formData.foodDescription} onChange={handleChange} />
-        <input type="text" name="foodType" placeholder="Food Type" required className="w-full p-2 border rounded" value={formData.foodType} onChange={handleChange} />
-        <input type="number" name="foodQuantity" placeholder="Food Quantity" required className="w-full p-2 border rounded" value={formData.foodQuantity} onChange={handleChange} />
-        <input type="file" multiple accept="image/*" onChange={handleImageChange} className="w-full p-2 border rounded" />
-        <input type="text" name="address" placeholder="Pickup Address" required className="w-full p-2 border rounded" value={formData.address} onChange={handleChange} />
-        <input type="date" name="expiryDate" required className="w-full p-2 border rounded" value={formData.expiryDate} onChange={handleChange} />
-        <input type="tel" name="contactPhoneNumber" placeholder="Phone Number" required className="w-full p-2 border rounded" value={formData.contactPhoneNumber} onChange={handleChange} />
-        <input type="email" name="contactEmail" placeholder="Email" required className="w-full p-2 border rounded" value={formData.contactEmail} onChange={handleChange} />
-        <button type="submit" className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">Submit</button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h2 className="text-2xl font-bold text-center text-gray-700">Food Donation Form</h2>
+        <form className="mt-6 grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="foodTitle" className="block text-gray-700 font-medium mb-1">
+              Food Title
+            </label>
+            <input
+              type="text"
+              id="foodTitle"
+              name="foodTitle"
+              placeholder="Food Title"
+              required
+              className="w-full p-2 border rounded"
+              value={formData.foodTitle}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="foodType" className="block text-gray-700 font-medium mb-1">
+              Food Type
+            </label>
+            <input
+              type="text"
+              id="foodType"
+              name="foodType"
+              placeholder="Food Type"
+              required
+              className="w-full p-2 border rounded"
+              value={formData.foodType}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="col-span-2">
+            <label htmlFor="foodDescription" className="block text-gray-700 font-medium mb-1">
+              Food Description
+            </label>
+            <textarea
+              id="foodDescription"
+              name="foodDescription"
+              placeholder="Food Description"
+              required
+              className="w-full p-2 border rounded"
+              value={formData.foodDescription}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="foodQuantity" className="block text-gray-700 font-medium mb-1">
+              Food Quantity
+            </label>
+            <input
+              type="number"
+              id="foodQuantity"
+              name="foodQuantity"
+              placeholder="Food Quantity"
+              required
+              className="w-full p-2 border rounded"
+              value={formData.foodQuantity}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="col-span-2">
+            <label htmlFor="foodImage" className="block text-gray-700 font-medium mb-1">
+              Food Images
+            </label>
+            <input
+              type="file"
+              id="foodImage"
+              name="foodImage"
+              multiple
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full p-2 border rounded"
+            />
+          </div>
+          <div>
+            <label htmlFor="address" className="block text-gray-700 font-medium mb-1">
+              Pickup Address
+            </label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Pickup Address"
+              required
+              className="w-full p-2 border rounded"
+              value={formData.address}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="expiryDate" className="block text-gray-700 font-medium mb-1">
+              Expiry Date
+            </label>
+            <input
+              type="date"
+              id="expiryDate"
+              name="expiryDate"
+              required
+              className="w-full p-2 border rounded"
+              value={formData.expiryDate}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="contactPhoneNumber" className="block text-gray-700 font-medium mb-1">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="contactPhoneNumber"
+              name="contactPhoneNumber"
+              placeholder="Phone Number"
+              required
+              className="w-full p-2 border rounded"
+              value={formData.contactPhoneNumber}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="contactEmail" className="block text-gray-700 font-medium mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              id="contactEmail"
+              name="contactEmail"
+              placeholder="Email"
+              required
+              className="w-full p-2 border rounded"
+              value={formData.contactEmail}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="col-span-2">
+            <button
+              type="submit"
+              className="w-full bg-green-500 text-white p-3 rounded-lg font-semibold hover:bg-green-600"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
