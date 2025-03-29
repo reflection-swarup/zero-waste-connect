@@ -59,6 +59,7 @@ const EventHostProfileForm = () => {
       console.log(res);
       if (response.ok) {
         alert("Profile completed successfully!");
+        localStorage.setItem("token", res.token);
         navigate("/dashboard/event-host");
       } else {
         setError(res.error || "Profile completion failed");
